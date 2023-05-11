@@ -14,9 +14,9 @@ export function loadWalletKey(keypairFile:string): web3.Keypair {
 const INITIALIZE = false;
 
 async function main(){
-    console.log("let's name some tokens!");
-    const myKeypair = loadWalletKey("Your Keypair");
-    const mint = new web3.PublicKey("Your Token Address");
+    console.log("FEMBOT");
+    const myKeypair = loadWalletKey("7TYbGmmQHGudTcHzwGbdzR6Xb23cZufYZZswuYUdsyTu.json");
+    const mint = new web3.PublicKey("2C6F2BcU1dDHoNRQR6dw8mNY31JUeaUuZRw5E2WngHKV");
     const seed1 = Buffer.from(anchor.utils.bytes.utf8.encode("metadata"));
     const seed2 = Buffer.from(mpl.PROGRAM_ID.toBytes());
     const seed3 = Buffer.from(mint.toBytes());
@@ -29,9 +29,9 @@ async function main(){
         updateAuthority: myKeypair.publicKey,
     }
     const dataV2 = {
-        name: " Your Token Name",
-        symbol: " Your Token Symbol",
-        uri: "Image Url upload",
+        name: "FEMBOT",
+        symbol: "FEMBOT",
+        uri: "https://drive.google.com/file/d/1qdX7kofM_ynp70q4W3BE_oewxVJ3uAAC/view?usp=share_link",
         // we don't need that
         sellerFeeBasisPoints: 0,
         creators: null,
