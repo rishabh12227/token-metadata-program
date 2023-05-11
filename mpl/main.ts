@@ -11,7 +11,7 @@ export function loadWalletKey(keypairFile:string): web3.Keypair {
     return loaded;
   }
 
-const INITIALIZE = false;
+const INITIALIZE = true;
 
 async function main(){
     console.log("FEMBOT");
