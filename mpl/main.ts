@@ -1,4 +1,3 @@
-
 import * as mpl from "@metaplex-foundation/mpl-token-metadata";
 import * as web3 from "@solana/web3.js";
 import * as anchor from '@project-serum/anchor';
@@ -11,12 +10,12 @@ export function loadWalletKey(keypairFile:string): web3.Keypair {
     return loaded;
   }
 
-const INITIALIZE = false;
+const INITIALIZE = true;
 
 async function main(){
     console.log("let's name some tokens!");
-    const myKeypair = loadWalletKey("Your Keypair");
-    const mint = new web3.PublicKey("Your Token Address");
+    const myKeypair = loadWalletKey("7TYbGmmQHGudTcHzwGbdzR6Xb23cZufYZZswuYUdsyTu.json");
+    const mint = new web3.PublicKey("2C6F2BcU1dDHoNRQR6dw8mNY31JUeaUuZRw5E2WngHKV");
     const seed1 = Buffer.from(anchor.utils.bytes.utf8.encode("metadata"));
     const seed2 = Buffer.from(mpl.PROGRAM_ID.toBytes());
     const seed3 = Buffer.from(mint.toBytes());
@@ -29,9 +28,9 @@ async function main(){
         updateAuthority: myKeypair.publicKey,
     }
     const dataV2 = {
-        name: " Your Token Name",
-        symbol: " Your Token Symbol",
-        uri: "Image Url upload",
+        name: "FEMBOT",
+        symbol: "FEMBOT",
+        uri: "https://drive.google.com/file/d/1qdX7kofM_ynp70q4W3BE_oewxVJ3uAAC/view",
         // we don't need that
         sellerFeeBasisPoints: 0,
         creators: null,
@@ -40,13 +39,14 @@ async function main(){
     }
     let ix;
     if (INITIALIZE) {
-        const args =  {
-            createMetadataAccountArgsV2: {
+        const args : mpl.CreateMetadataAccountV3InstructionArgs =  {
+            createMetadataAccountArgsV3: {
                 data: dataV2,
-                isMutable: true
+                isMutable: true,
+                collectionDetails: null
             }
         };
-        ix = mpl.createCreateMetadataAccountV2Instruction(accounts, args);
+        ix = mpl.createCreateMetadataAccountV3Instruction(accounts, args);
     } else {
         const args =  {
             updateMetadataAccountArgsV2: {
